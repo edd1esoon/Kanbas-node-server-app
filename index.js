@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== "development") {
   sessionOptions.cookie = {
     sameSite: "none",
     secure: true,
-    domain: kanbas-node-server-app-g3f6.onrender.com,
+    domain: "kanbas-node-server-app-g3f6.onrender.com",
   };
 }
 app.use(express.json());
