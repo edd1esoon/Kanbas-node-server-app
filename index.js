@@ -9,12 +9,24 @@ import ModuleRoutes from "./Kanbas/Modules/routes.js";
 import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
 
 const app = express();
+const allowedOrigins = [
+  "http://localhost:3000", 
+  "https://a5--kanbas-react-web-app-cs5610-24fa.netlify.app", 
+];
+
 app.use(
   cors({
     credentials: true,
-    origin: "https://a5--kanbas-react-web-app-cs5610-24fa.netlify.app/" || "http://localhost:3000",
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
+
 const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kanbas",
   resave: false,
