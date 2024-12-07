@@ -31,6 +31,11 @@ if (process.env.NODE_ENV !== "development") {
 app.use(express.json());
 app.use(session(sessionOptions));
 
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Kanbas Node Server!");
+});
+
 UserRoutes(app);
 CourseRoutes(app);
 ModuleRoutes(app);
